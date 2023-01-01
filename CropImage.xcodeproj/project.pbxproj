@@ -16,6 +16,8 @@
 		7B2920E429618E5100B13A01 /* CropImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2920E329618E5100B13A01 /* CropImageTests.swift */; };
 		7B2920EE29618E5100B13A01 /* CropImageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2920ED29618E5100B13A01 /* CropImageUITests.swift */; };
 		7B2920F029618E5100B13A01 /* CropImageUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2920EF29618E5100B13A01 /* CropImageUITestsLaunchTests.swift */; };
+		7B2920FF29618F1600B13A01 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2920FE29618F1600B13A01 /* Home.swift */; };
+		7B29210129618F6100B13A01 /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29210029618F6100B13A01 /* Crop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		7B2920E929618E5100B13A01 /* CropImageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CropImageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2920ED29618E5100B13A01 /* CropImageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageUITests.swift; sourceTree = "<group>"; };
 		7B2920EF29618E5100B13A01 /* CropImageUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7B2920FE29618F1600B13A01 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		7B29210029618F6100B13A01 /* Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 		7B2920CC29618E4E00B13A01 /* CropImage */ = {
 			isa = PBXGroup;
 			children = (
+				7B2920FD29618EF000B13A01 /* View */,
+				7B2920FC29618ED100B13A01 /* Model */,
 				7B2920CD29618E4E00B13A01 /* CropImageApp.swift */,
 				7B2920CF29618E4E00B13A01 /* ContentView.swift */,
 				7B2920D129618E5100B13A01 /* Assets.xcassets */,
@@ -131,6 +137,22 @@
 				7B2920EF29618E5100B13A01 /* CropImageUITestsLaunchTests.swift */,
 			);
 			path = CropImageUITests;
+			sourceTree = "<group>";
+		};
+		7B2920FC29618ED100B13A01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B29210029618F6100B13A01 /* Crop.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B2920FD29618EF000B13A01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B2920FE29618F1600B13A01 /* Home.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,8 +287,10 @@
 			files = (
 				7B2920D729618E5100B13A01 /* Persistence.swift in Sources */,
 				7B2920DA29618E5100B13A01 /* CropImage.xcdatamodeld in Sources */,
+				7B2920FF29618F1600B13A01 /* Home.swift in Sources */,
 				7B2920D029618E4E00B13A01 /* ContentView.swift in Sources */,
 				7B2920CE29618E4E00B13A01 /* CropImageApp.swift in Sources */,
+				7B29210129618F6100B13A01 /* Crop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
