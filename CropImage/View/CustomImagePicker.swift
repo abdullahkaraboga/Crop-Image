@@ -85,11 +85,15 @@ struct CropView: View {
     var crop: Crop
     var image: UIImage?
     var onCrop: (UIImage?, Bool) -> ()
-    
-    @Environment(\.dismiss) private var dismiss
-    
-    
 
+    @Environment(\.dismiss) private var dismiss
+
+
+    @State private var scale: CGFloat = 0
+    @State private var lastScale: CGFloat = 0
+    @State private var offset: CGSize = .zero
+    @State private var lastStoredOffset: CGSize = .zero
+    @GestureState private var isInteracting: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -139,13 +143,91 @@ struct CropView: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .overlay(content: {
+                    GeometryReader { proxy in
+
+                        let rect = proxy.frame(in: .named("CROPVİEW"))
+
+                        Color.clear
+                            .onChange(of: isInteracting) { newValue in
+
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                if rect.minX > 0 {
+                                    offset.width = (offset.width - rect.minX)
+                                }
+                                if rect.minY > 0 {
+                                    offset.height = (offset.height - rect.minY)
+                                }
+                                
+                                if rect.maxX < size.width{
+                                    offset.width = (rect.minX - offset.width)
+                                }
+                                
+                                if rect.maxY < size.height{
+                                    offset.width = (rect.minY - offset.height)
+                                }
+
+                            }
+
+                            if !newValue {
+                                lastStoredOffset = offset
+                            }
+
+                        }
+
+                    }
+                })
                     .frame(size)
+
             }
 
-        }.overlay(content: {
+        }.scaleEffect(scale)
+            .offset(offset)
+            .overlay(content: {
             Grids()
-        })
 
+        }).coordinateSpace(name: "CROPVİEW")
+            .gesture(
+
+            DragGesture()
+                .updating($isInteracting, body: { _, out, _ in
+
+                out = true
+            }).onChanged({ value in
+                let translation = value.translation
+                offset = CGSize(width: translation.width + lastStoredOffset.width,
+                                height: translation.height + lastStoredOffset.height)
+
+            })
+
+        ).gesture(
+
+            MagnificationGesture()
+                .updating($isInteracting, body: { _, out, _ in
+
+                out = true
+
+            }).onChanged({ value in
+                let updateScale = value + lastScale
+
+                scale = (updateScale < 1 ? 1 : updateScale)
+            }).onEnded({ value in
+
+                withAnimation(.easeOut(duration: 0.2)) {
+                    if scale < 1 {
+                        scale = 1
+                        lastScale = 0
+                    } else {
+                        lastScale = scale - 1
+                    }
+                }
+
+            })
+
+
+
+
+        )
 
             .frame(cropSize)
             .cornerRadius(crop == .circle ? cropSize.height / 2 : 0)
