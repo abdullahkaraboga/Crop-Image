@@ -40,6 +40,7 @@ struct Home: View {
                     .tint(.black)
                 }
             }
+                .cropImagePicker(options: [.circle,.square,.rectangle], show: $showPicker, croppedImage: $croppedImage)
         }
     }
 }
